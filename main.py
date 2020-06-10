@@ -43,6 +43,7 @@ class mywindow(QMainWindow):
     test = ""
     db_nn = ""
 
+
     def __init__(self):
         super(mywindow, self).__init__()
         self.ui = Ui_MainWindow()
@@ -50,11 +51,11 @@ class mywindow(QMainWindow):
 
         self.ui.ActImgs.triggered.connect(self.clickDirImages)
         self.ui.ActThreshGlobal.triggered.connect(self.filter_global)
-        self.ui.actionThresh_Otsu.triggered.connect(self.filter_otsu)
-        self.ui.actionThresh_Mean.triggered.connect(self.filter_mean)
-        self.ui.actionThresh_Gaussian.triggered.connect(self.filter_gaussian)
-        self.ui.actionThresh_Gaussian_and_Otsu.triggered.connect(self.filter_gaussian_and_otsu)
-        self.ui.action_JPG_PNG.triggered.connect(self.convert_jpg_to_png)
+        self.ui.ActThreshOtsu.triggered.connect(self.filter_otsu)
+        self.ui.ActThreshMean.triggered.connect(self.filter_mean)
+        self.ui.ActThreshGaussian.triggered.connect(self.filter_gaussian)
+        self.ui.ActThreshGaussianAndOtsu.triggered.connect(self.filter_gaussian_and_otsu)
+        self.ui.ActJPG_PNG.triggered.connect(self.convert_jpg_to_png)
 
         self.ui.LstSrcImg.itemClicked.connect(self.showImg)
         self.ui.LstNNImg.itemClicked.connect(self.showNNImg)
@@ -118,6 +119,15 @@ class mywindow(QMainWindow):
     def clickDbNNDir(self):
         self.db_nn = QFileDialog.getOpenFileName(self, "Выбрать базы данных нейронной сети", "", "*.hdf5")
         self.ui.LblDbNN.setText(self.db_nn[0])
+
+    def clickSrcDataNN(self):
+        self.train = QFileDialog.getExistingDirectory(self, "Выбрать директорию с исходными данными", "")
+
+    def clickMaskDataNN(self):
+        self.train = QFileDialog.getExistingDirectory(self, "Выбрать директорию с масками", "")
+
+    def clickTrainDataNN(self):
+        self.aug = QFileDialog.getExistingDirectory(self, "Выбрать директорию с тренировочными данными", "")
 
     def clearGrafFilter(self):
         if self.ui.VBoxSrc.count():
@@ -230,10 +240,12 @@ class mywindow(QMainWindow):
         if not os.path.isdir(self.current_dir):
             return
 
-        for path, dirs, files in self.current_dir:
+        for path, dirs, files in os.walk(self.current_dir):
             for img in files:
                 full = os.path.join(path, img)
-                to_png(full, os.path.join(full, ".png"))
+                if full.endswith(".jpg"):
+                    to_png.jpg_to_png(full, path)
+                    os.remove(full)
 
     def neuron_net_test(self):
         if self.ui.LstNNImg.count() != 0:

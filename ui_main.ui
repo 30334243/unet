@@ -292,26 +292,31 @@
      <string>Файл</string>
     </property>
     <addaction name="ActImgs"/>
-    <addaction name="action_JPG_PNG"/>
+    <addaction name="ActJPG_PNG"/>
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
      <string>Операции</string>
     </property>
     <addaction name="ActThreshGlobal"/>
-    <addaction name="actionThresh_Gaussian"/>
-    <addaction name="actionThresh_Otsu"/>
-    <addaction name="actionThresh_Mean"/>
-    <addaction name="actionThresh_Gaussian_and_Otsu"/>
+    <addaction name="ActThreshGaussian"/>
+    <addaction name="ActThreshOtsu"/>
+    <addaction name="ActThreshMean"/>
+    <addaction name="ActThreshGaussianAndOtsu"/>
     <addaction name="separator"/>
    </widget>
    <widget class="QMenu" name="menu_3">
     <property name="title">
      <string>Нейронная сеть</string>
     </property>
-    <addaction name="ActRunNN"/>
     <addaction name="ActTestImg"/>
     <addaction name="ActDbNN"/>
+    <addaction name="separator"/>
+    <addaction name="ActSrcImg"/>
+    <addaction name="ActTrainImg"/>
+    <addaction name="ActAugImg"/>
+    <addaction name="ActRunNN"/>
+    <addaction name="separator"/>
    </widget>
    <addaction name="menu"/>
    <addaction name="menu_2"/>
@@ -323,71 +328,42 @@
     <string>Директория изображений</string>
    </property>
   </action>
-  <action name="ActImg">
-   <property name="text">
-    <string>Изображение</string>
-   </property>
-  </action>
-  <action name="ActGaussian">
-   <property name="icon">
-    <iconset>
-     <normaloff>gaus.png</normaloff>gaus.png</iconset>
-   </property>
-   <property name="text">
-    <string>gaussian</string>
-   </property>
-  </action>
-  <action name="ActOtsu">
-   <property name="text">
-    <string>otsu</string>
-   </property>
-  </action>
-  <action name="ActMean">
-   <property name="text">
-    <string>mean</string>
-   </property>
-  </action>
-  <action name="ActGlobal">
-   <property name="text">
-    <string>global</string>
-   </property>
-  </action>
   <action name="ActThreshGlobal">
    <property name="text">
     <string>Метод Global</string>
    </property>
   </action>
-  <action name="ActNeuronNet">
+  <action name="ActRunNN">
    <property name="text">
-    <string>NeuronNet</string>
+    <string>Запустить обучение нейронной сети</string>
    </property>
   </action>
   <action name="ActTrainImg">
    <property name="text">
-    <string>Тренировочные данные</string>
+    <string>Директория с масками</string>
    </property>
   </action>
   <action name="ActSrcImg">
    <property name="text">
-    <string>Исходные данные</string>
+    <string>Директория с исходными данными</string>
    </property>
   </action>
   <action name="ActAugImg">
    <property name="text">
-    <string>Генерация тренировочных данных</string>
+    <string>Директория тренировочных данных</string>
    </property>
   </action>
-  <action name="actionThresh_Gaussian">
+  <action name="ActThreshGaussian">
    <property name="text">
     <string>Метод Gaussian</string>
    </property>
   </action>
-  <action name="actionThresh_Otsu">
+  <action name="ActThreshOtsu">
    <property name="text">
     <string>Метод Otsu</string>
    </property>
   </action>
-  <action name="actionThresh_Mean">
+  <action name="ActThreshMean">
    <property name="text">
     <string>Метод Mean</string>
    </property>
@@ -402,22 +378,12 @@
     <string>База данных весов</string>
    </property>
   </action>
-  <action name="ActGaussianOtsu">
-   <property name="text">
-    <string>Gaussian and otsu</string>
-   </property>
-  </action>
-  <action name="actionThresh_Gaussian_and_Otsu">
+  <action name="ActThreshGaussianAndOtsu">
    <property name="text">
     <string>Метод Gaussian и Otsu</string>
    </property>
   </action>
-  <action name="ActRunNN">
-   <property name="text">
-    <string>Запустить нейронную сеть</string>
-   </property>
-  </action>
-  <action name="action_JPG_PNG">
+  <action name="ActJPG_PNG">
    <property name="text">
     <string>Конвертировать из JPG в PNG</string>
    </property>
