@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>704</width>
+    <height>871</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QListWidget" name="LstSrcImg">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>119</y>
+      <width>256</width>
+      <height>411</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="LblSrcImg">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>120</y>
+      <width>200</width>
+      <height>200</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="LblDstImg">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>120</y>
+      <width>200</width>
+      <height>200</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="LstNNImg">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>540</y>
+      <width>256</width>
+      <height>201</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>329</y>
+      <width>201</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="VBoxSrc"/>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>330</y>
+      <width>201</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="VBoxDst"/>
+   </widget>
+   <widget class="QLabel" name="LblNN">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>540</y>
+      <width>200</width>
+      <height>200</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>540</y>
+      <width>201</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="VBoxNN"/>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>750</y>
+      <width>251</width>
+      <height>72</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Директория с исходными изображениями:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Директория результата применения фильтра:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Директория резултата нейронной сети:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>База данных весов нейронной сети:</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>750</y>
+      <width>421</width>
+      <height>72</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QLabel" name="LblDirSrcImg">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="LblDirResFilter">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="LblDirResNN">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="LblDbNN">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>0</y>
+      <width>31</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Global</string>
+    </property>
+   </widget>
+   <widget class="QSlider" name="SliderGlobal">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>160</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>255</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+    <property name="tickPosition">
+     <enum>QSlider::TicksBothSides</enum>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="SpinGlobal">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>30</y>
+      <width>42</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>255</number>
+    </property>
+   </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>681</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>704</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Файл</string>
+    </property>
+    <addaction name="ActImgs"/>
+    <addaction name="action_JPG_PNG"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>Операции</string>
+    </property>
+    <addaction name="ActThreshGlobal"/>
+    <addaction name="actionThresh_Gaussian"/>
+    <addaction name="actionThresh_Otsu"/>
+    <addaction name="actionThresh_Mean"/>
+    <addaction name="actionThresh_Gaussian_and_Otsu"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>Нейронная сеть</string>
+    </property>
+    <addaction name="ActRunNN"/>
+    <addaction name="ActTestImg"/>
+    <addaction name="ActDbNN"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
+   <addaction name="menu_3"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="ActImgs">
+   <property name="text">
+    <string>Директория изображений</string>
+   </property>
+  </action>
+  <action name="ActImg">
+   <property name="text">
+    <string>Изображение</string>
+   </property>
+  </action>
+  <action name="ActGaussian">
+   <property name="icon">
+    <iconset>
+     <normaloff>gaus.png</normaloff>gaus.png</iconset>
+   </property>
+   <property name="text">
+    <string>gaussian</string>
+   </property>
+  </action>
+  <action name="ActOtsu">
+   <property name="text">
+    <string>otsu</string>
+   </property>
+  </action>
+  <action name="ActMean">
+   <property name="text">
+    <string>mean</string>
+   </property>
+  </action>
+  <action name="ActGlobal">
+   <property name="text">
+    <string>global</string>
+   </property>
+  </action>
+  <action name="ActThreshGlobal">
+   <property name="text">
+    <string>Метод Global</string>
+   </property>
+  </action>
+  <action name="ActNeuronNet">
+   <property name="text">
+    <string>NeuronNet</string>
+   </property>
+  </action>
+  <action name="ActTrainImg">
+   <property name="text">
+    <string>Тренировочные данные</string>
+   </property>
+  </action>
+  <action name="ActSrcImg">
+   <property name="text">
+    <string>Исходные данные</string>
+   </property>
+  </action>
+  <action name="ActAugImg">
+   <property name="text">
+    <string>Генерация тренировочных данных</string>
+   </property>
+  </action>
+  <action name="actionThresh_Gaussian">
+   <property name="text">
+    <string>Метод Gaussian</string>
+   </property>
+  </action>
+  <action name="actionThresh_Otsu">
+   <property name="text">
+    <string>Метод Otsu</string>
+   </property>
+  </action>
+  <action name="actionThresh_Mean">
+   <property name="text">
+    <string>Метод Mean</string>
+   </property>
+  </action>
+  <action name="ActTestImg">
+   <property name="text">
+    <string>Данные для тестирования</string>
+   </property>
+  </action>
+  <action name="ActDbNN">
+   <property name="text">
+    <string>База данных весов</string>
+   </property>
+  </action>
+  <action name="ActGaussianOtsu">
+   <property name="text">
+    <string>Gaussian and otsu</string>
+   </property>
+  </action>
+  <action name="actionThresh_Gaussian_and_Otsu">
+   <property name="text">
+    <string>Метод Gaussian и Otsu</string>
+   </property>
+  </action>
+  <action name="ActRunNN">
+   <property name="text">
+    <string>Запустить нейронную сеть</string>
+   </property>
+  </action>
+  <action name="action_JPG_PNG">
+   <property name="text">
+    <string>Конвертировать из JPG в PNG</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
