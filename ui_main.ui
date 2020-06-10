@@ -6,284 +6,540 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>704</width>
-    <height>871</height>
+    <width>834</width>
+    <height>690</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QListWidget" name="LstSrcImg">
-    <property name="geometry">
-     <rect>
-      <x>9</x>
-      <y>119</y>
-      <width>256</width>
-      <height>411</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="LblSrcImg">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>120</y>
-      <width>200</width>
-      <height>200</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Box</enum>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="LblDstImg">
-    <property name="geometry">
-     <rect>
-      <x>490</x>
-      <y>120</y>
-      <width>200</width>
-      <height>200</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Box</enum>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QListWidget" name="LstNNImg">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>540</y>
-      <width>256</width>
-      <height>201</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QWidget" name="verticalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>329</y>
-      <width>201</width>
-      <height>201</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="VBoxSrc"/>
-   </widget>
-   <widget class="QWidget" name="verticalLayoutWidget_2">
-    <property name="geometry">
-     <rect>
-      <x>490</x>
-      <y>330</y>
-      <width>201</width>
-      <height>201</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="VBoxDst"/>
-   </widget>
-   <widget class="QLabel" name="LblNN">
-    <property name="geometry">
-     <rect>
-      <x>280</x>
-      <y>540</y>
-      <width>200</width>
-      <height>200</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Box</enum>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QWidget" name="verticalLayoutWidget_3">
-    <property name="geometry">
-     <rect>
-      <x>490</x>
-      <y>540</y>
-      <width>201</width>
-      <height>201</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="VBoxNN"/>
-   </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>9</x>
-      <y>750</y>
-      <width>251</width>
-      <height>72</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Директория с исходными изображениями:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="Tab">
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="TabTools">
+       <attribute name="title">
+        <string>Инструменты</string>
+       </attribute>
+       <widget class="QListWidget" name="LstSrcImg">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>180</y>
+          <width>256</width>
+          <height>411</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="LblDstImg">
+        <property name="geometry">
+         <rect>
+          <x>491</x>
+          <y>181</y>
+          <width>200</width>
+          <height>200</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QWidget" name="verticalLayoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>281</x>
+          <y>390</y>
+          <width>201</width>
+          <height>201</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="VBoxSrcFilter"/>
+       </widget>
+       <widget class="QLabel" name="LblSrcImg">
+        <property name="geometry">
+         <rect>
+          <x>281</x>
+          <y>181</y>
+          <width>200</width>
+          <height>200</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QWidget" name="verticalLayoutWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>491</x>
+          <y>391</y>
+          <width>201</width>
+          <height>201</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="VBoxDstFilter"/>
+       </widget>
+       <widget class="QLabel" name="label_5">
+        <property name="geometry">
+         <rect>
+          <x>550</x>
+          <y>120</y>
+          <width>31</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Global</string>
+        </property>
+       </widget>
+       <widget class="QSlider" name="SliderGlobal">
+        <property name="geometry">
+         <rect>
+          <x>490</x>
+          <y>150</y>
+          <width>160</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="maximum">
+         <number>255</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="tickPosition">
+         <enum>QSlider::TicksBothSides</enum>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="SpinGlobal">
+        <property name="geometry">
+         <rect>
+          <x>650</x>
+          <y>150</y>
+          <width>42</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="maximum">
+         <number>255</number>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="LineSrcImg">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>30</y>
+          <width>671</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="BtnSrcImg">
+        <property name="geometry">
+         <rect>
+          <x>700</x>
+          <y>30</y>
+          <width>75</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Обзор</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_13">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>10</y>
+          <width>671</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Директория с изображениями</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="BtnJpgToPng">
+        <property name="geometry">
+         <rect>
+          <x>700</x>
+          <y>80</y>
+          <width>75</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Обзор</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_16">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>60</y>
+          <width>671</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Директория с конвертации изображения из JPG в PNG</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="LineJpgToPng">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>80</y>
+          <width>671</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="BtnApplyFilterAll">
+        <property name="geometry">
+         <rect>
+          <x>700</x>
+          <y>180</y>
+          <width>91</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Прим.для всех</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="BtnConvertJpgToPng">
+        <property name="geometry">
+         <rect>
+          <x>700</x>
+          <y>110</y>
+          <width>101</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Конвертировать</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="LineSaveFilterImg">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>150</y>
+          <width>341</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="BtnSaveFilterImg">
+        <property name="geometry">
+         <rect>
+          <x>370</x>
+          <y>150</y>
+          <width>91</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Обзор</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="BtnApplyFilter">
+        <property name="geometry">
+         <rect>
+          <x>700</x>
+          <y>150</y>
+          <width>91</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Применить</string>
+        </property>
+       </widget>
       </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>Директория результата применения фильтра:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
+      <widget class="QWidget" name="TabTrainNN">
+       <attribute name="title">
+        <string>Тренировка нейронной сети</string>
+       </attribute>
+       <widget class="QSpinBox" name="SpinEpochs">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>40</y>
+          <width>61</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="maximum">
+         <number>1000</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_14">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>20</y>
+          <width>101</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Колличество эпох</string>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="SpinStepEpochs">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>40</y>
+          <width>71</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="maximum">
+         <number>5000</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_15">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>121</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Шаг выборки данных</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="LineSrcData">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>90</y>
+          <width>651</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>images</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="LineMasksData">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>130</y>
+          <width>651</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>masks</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="LineAugData">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>170</y>
+          <width>651</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>aug</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="BtnAugData">
+        <property name="geometry">
+         <rect>
+          <x>690</x>
+          <y>170</y>
+          <width>75</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Обзор</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_10">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>70</y>
+          <width>651</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Директория исходных изображений</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_11">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>110</y>
+          <width>651</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Директория масок</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_12">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>150</y>
+          <width>651</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Директория тренировочных данных</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="BtnRunNN">
+        <property name="geometry">
+         <rect>
+          <x>690</x>
+          <y>220</y>
+          <width>81</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Запуск</string>
+        </property>
+       </widget>
       </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>Директория резултата нейронной сети:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
+      <widget class="QWidget" name="TabTestNN">
+       <attribute name="title">
+        <string>Тестирование нейронной сети</string>
+       </attribute>
+       <widget class="QLabel" name="LblNN">
+        <property name="geometry">
+         <rect>
+          <x>280</x>
+          <y>160</y>
+          <width>200</width>
+          <height>200</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QWidget" name="verticalLayoutWidget_3">
+        <property name="geometry">
+         <rect>
+          <x>490</x>
+          <y>160</y>
+          <width>201</width>
+          <height>201</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="VBoxNN_3"/>
+       </widget>
+       <widget class="QListWidget" name="LstNNImg">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>160</y>
+          <width>256</width>
+          <height>201</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="LineTestData">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>50</y>
+          <width>671</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="LineDB">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>80</y>
+          <width>671</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="BtnTestData">
+        <property name="geometry">
+         <rect>
+          <x>700</x>
+          <y>50</y>
+          <width>75</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Обзор</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="BtnDB">
+        <property name="geometry">
+         <rect>
+          <x>700</x>
+          <y>80</y>
+          <width>75</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Обзор</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="BtnTestNN">
+        <property name="geometry">
+         <rect>
+          <x>700</x>
+          <y>120</y>
+          <width>75</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Запуск</string>
+        </property>
+       </widget>
       </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label_4">
-       <property name="text">
-        <string>База данных весов нейронной сети:</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>270</x>
-      <y>750</y>
-      <width>421</width>
-      <height>72</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout_2">
-     <item>
-      <widget class="QLabel" name="LblDirSrcImg">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="LblDirResFilter">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="LblDirResNN">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="LblDbNN">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>80</x>
-      <y>0</y>
-      <width>31</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Global</string>
-    </property>
-   </widget>
-   <widget class="QSlider" name="SliderGlobal">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>30</y>
-      <width>160</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="maximum">
-     <number>255</number>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-    <property name="tickPosition">
-     <enum>QSlider::TicksBothSides</enum>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="SpinGlobal">
-    <property name="geometry">
-     <rect>
-      <x>180</x>
-      <y>30</y>
-      <width>42</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <property name="maximum">
-     <number>255</number>
-    </property>
-   </widget>
-   <widget class="Line" name="line">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>60</y>
-      <width>681</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-   </widget>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>704</width>
+     <width>834</width>
      <height>21</height>
     </rect>
    </property>
@@ -311,6 +567,7 @@
     </property>
     <addaction name="ActTestImg"/>
     <addaction name="ActDbNN"/>
+    <addaction name="ActRunTestNN"/>
     <addaction name="separator"/>
     <addaction name="ActSrcImg"/>
     <addaction name="ActTrainImg"/>
@@ -386,6 +643,11 @@
   <action name="ActJPG_PNG">
    <property name="text">
     <string>Конвертировать из JPG в PNG</string>
+   </property>
+  </action>
+  <action name="ActRunTestNN">
+   <property name="text">
+    <string>Запустить нейронную сеть</string>
    </property>
   </action>
  </widget>
