@@ -192,7 +192,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>Директория с конвертации изображения из JPG в PNG</string>
+         <string>Директория сохранения результата конвертации изображений из JPG в PNG</string>
         </property>
        </widget>
        <widget class="QLineEdit" name="LineJpgToPng">
@@ -284,6 +284,9 @@
         <property name="maximum">
          <number>1000</number>
         </property>
+        <property name="value">
+         <number>1</number>
+        </property>
        </widget>
        <widget class="QLabel" name="label_14">
         <property name="geometry">
@@ -310,6 +313,9 @@
         <property name="maximum">
          <number>5000</number>
         </property>
+        <property name="value">
+         <number>300</number>
+        </property>
        </widget>
        <widget class="QLabel" name="label_15">
         <property name="geometry">
@@ -328,8 +334,8 @@
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>90</y>
-          <width>651</width>
+          <y>140</y>
+          <width>321</width>
           <height>20</height>
          </rect>
         </property>
@@ -341,8 +347,8 @@
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>130</y>
-          <width>651</width>
+          <y>180</y>
+          <width>321</width>
           <height>20</height>
          </rect>
         </property>
@@ -354,8 +360,8 @@
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>170</y>
-          <width>651</width>
+          <y>220</y>
+          <width>321</width>
           <height>20</height>
          </rect>
         </property>
@@ -363,11 +369,89 @@
          <string>aug</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="BtnAugData">
+       <widget class="QLabel" name="label_10">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>120</y>
+          <width>651</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Относительный путь к директории исходных изображений</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_11">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>160</y>
+          <width>651</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Относительный путь к директории масок</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_12">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>200</y>
+          <width>651</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Относительноый путь к директории тренировочных данных</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="BtnTrainNN">
         <property name="geometry">
          <rect>
           <x>690</x>
-          <y>170</y>
+          <y>300</y>
+          <width>81</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Запуск</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="LineDbSaveWeight">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>260</y>
+          <width>651</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_17">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>240</y>
+          <width>651</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Сохранение базы данных весов нейронной сети</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="BtnDbSaveWeight">
+        <property name="geometry">
+         <rect>
+          <x>690</x>
+          <y>260</y>
           <width>75</width>
           <height>23</height>
          </rect>
@@ -376,37 +460,24 @@
          <string>Обзор</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_10">
+       <widget class="QLineEdit" name="LineTrainData">
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>70</y>
+          <y>100</y>
           <width>651</width>
-          <height>16</height>
+          <height>20</height>
          </rect>
         </property>
         <property name="text">
-         <string>Директория исходных изображений</string>
+         <string/>
         </property>
        </widget>
-       <widget class="QLabel" name="label_11">
+       <widget class="QLabel" name="label_21">
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>110</y>
-          <width>651</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Директория масок</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_12">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>150</y>
+          <y>80</y>
           <width>651</width>
           <height>16</height>
          </rect>
@@ -415,17 +486,17 @@
          <string>Директория тренировочных данных</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="BtnRunNN">
+       <widget class="QPushButton" name="BtnTrainData">
         <property name="geometry">
          <rect>
           <x>690</x>
-          <y>220</y>
-          <width>81</width>
+          <y>100</y>
+          <width>75</width>
           <height>23</height>
          </rect>
         </property>
         <property name="text">
-         <string>Запуск</string>
+         <string>Обзор</string>
         </property>
        </widget>
       </widget>
@@ -437,7 +508,7 @@
         <property name="geometry">
          <rect>
           <x>280</x>
-          <y>160</y>
+          <y>230</y>
           <width>200</width>
           <height>200</height>
          </rect>
@@ -453,18 +524,18 @@
         <property name="geometry">
          <rect>
           <x>490</x>
-          <y>160</y>
+          <y>230</y>
           <width>201</width>
           <height>201</height>
          </rect>
         </property>
-        <layout class="QVBoxLayout" name="VBoxNN_3"/>
+        <layout class="QVBoxLayout" name="VBoxTestNN"/>
        </widget>
        <widget class="QListWidget" name="LstNNImg">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>160</y>
+          <y>230</y>
           <width>256</width>
           <height>201</height>
          </rect>
@@ -480,11 +551,11 @@
          </rect>
         </property>
        </widget>
-       <widget class="QLineEdit" name="LineDB">
+       <widget class="QLineEdit" name="LineDbOpenWeights">
         <property name="geometry">
          <rect>
           <x>20</x>
-          <y>80</y>
+          <y>130</y>
           <width>671</width>
           <height>20</height>
          </rect>
@@ -503,11 +574,11 @@
          <string>Обзор</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="BtnDB">
+       <widget class="QPushButton" name="BtnDbOpenWeights">
         <property name="geometry">
          <rect>
           <x>700</x>
-          <y>80</y>
+          <y>130</y>
           <width>75</width>
           <height>23</height>
          </rect>
@@ -520,13 +591,75 @@
         <property name="geometry">
          <rect>
           <x>700</x>
-          <y>120</y>
+          <y>170</y>
           <width>75</width>
           <height>23</height>
          </rect>
         </property>
         <property name="text">
          <string>Запуск</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_18">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>30</y>
+          <width>671</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Дериктория тестируемых данных</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_19">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>110</y>
+          <width>671</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>База данных весов нейронной сети</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_20">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>70</y>
+          <width>671</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Дериктория сохранения результата</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="BtnTestResult">
+        <property name="geometry">
+         <rect>
+          <x>700</x>
+          <y>90</y>
+          <width>75</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Обзор</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="LineTestResult">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>90</y>
+          <width>671</width>
+          <height>20</height>
+         </rect>
         </property>
        </widget>
       </widget>
@@ -565,14 +698,14 @@
     <property name="title">
      <string>Нейронная сеть</string>
     </property>
-    <addaction name="ActTestImg"/>
-    <addaction name="ActDbNN"/>
+    <addaction name="ActTestData"/>
+    <addaction name="ActTestResult"/>
+    <addaction name="ActDbWeights"/>
     <addaction name="ActRunTestNN"/>
     <addaction name="separator"/>
-    <addaction name="ActSrcImg"/>
-    <addaction name="ActTrainImg"/>
-    <addaction name="ActAugImg"/>
-    <addaction name="ActRunNN"/>
+    <addaction name="ActTrainData"/>
+    <addaction name="ActSaveTrainData"/>
+    <addaction name="ActRunTrainNN"/>
     <addaction name="separator"/>
    </widget>
    <addaction name="menu"/>
@@ -590,22 +723,12 @@
     <string>Метод Global</string>
    </property>
   </action>
-  <action name="ActRunNN">
+  <action name="ActRunTrainNN">
    <property name="text">
     <string>Запустить обучение нейронной сети</string>
    </property>
   </action>
-  <action name="ActTrainImg">
-   <property name="text">
-    <string>Директория с масками</string>
-   </property>
-  </action>
-  <action name="ActSrcImg">
-   <property name="text">
-    <string>Директория с исходными данными</string>
-   </property>
-  </action>
-  <action name="ActAugImg">
+  <action name="ActTrainData">
    <property name="text">
     <string>Директория тренировочных данных</string>
    </property>
@@ -625,14 +748,14 @@
     <string>Метод Mean</string>
    </property>
   </action>
-  <action name="ActTestImg">
+  <action name="ActTestData">
    <property name="text">
-    <string>Данные для тестирования</string>
+    <string>Директория тестируемых данных</string>
    </property>
   </action>
-  <action name="ActDbNN">
+  <action name="ActDbWeights">
    <property name="text">
-    <string>База данных весов</string>
+    <string>База данных весов нейронной сети</string>
    </property>
   </action>
   <action name="ActThreshGaussianAndOtsu">
@@ -647,7 +770,17 @@
   </action>
   <action name="ActRunTestNN">
    <property name="text">
-    <string>Запустить нейронную сеть</string>
+    <string>Запустить тестирование нейронной сети</string>
+   </property>
+  </action>
+  <action name="ActTestResult">
+   <property name="text">
+    <string>Директория сохранения результата</string>
+   </property>
+  </action>
+  <action name="ActSaveTrainData">
+   <property name="text">
+    <string>Директория сохранения базы данных весов нейронной сети</string>
    </property>
   </action>
  </widget>

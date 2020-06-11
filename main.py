@@ -1,14 +1,16 @@
 from PyQt5 import QtWidgets
 from PyQt5 import QtCore
-from PyQt5.QtWidgets import QMainWindow, QAction, qApp, QApplication, QFileDialog
-from PyQt5 import QtGui
+from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog
 from PyQt5.QtGui import QPixmap
 from ui_main import Ui_MainWindow
-from PIL import Image
 import sys
-import os
 import shutil
 import cv2 as cv
+
+from model import *
+from Data.data import *
+
+from pathlib import Path
 
 from Filters import black_and_white as bw
 from Convert import jpg_to_png as to_png
@@ -16,11 +18,8 @@ from Convert import jpg_to_png as to_png
 import matplotlib
 
 matplotlib.use('Qt5Agg')
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg, NavigationToolbar2QT as NavigationToolbar
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
-
-from model import *
-from data import *
 
 PROCESS = "process"
 IMAGES = "images"
@@ -41,12 +40,15 @@ class mywindow(QMainWindow):
     png = ""
     save = ""
 
+    train = ""
     masks = ""
     src = ""
     aug = ""
 
     test = ""
-    db_nn = ""
+    res_test = ""
+    weights_train = ""
+    weights_test = ""
 
     def __init__(self):
         super(mywindow, self).__init__()
@@ -75,21 +77,23 @@ class mywindow(QMainWindow):
         self.ui.LstSrcImg.itemClicked.connect(self.showImg)
         self.ui.LstNNImg.itemClicked.connect(self.showNNImg)
 
-        # run NN
-        self.ui.ActRunNN.triggered.connect(self.neuron_net_test)
-        self.ui.ActSrcImg.triggered.connect(self.clickSrcDataNN)
-        self.ui.ActTrainImg.triggered.connect(self.clickMaskDataNN)
-        self.ui.ActAugImg.triggered.connect(self.clickTrainDataNN)
+        # train NN
+        self.ui.ActTrainData.triggered.connect(self.clickTrainData)
+        self.ui.ActSaveTrainData.triggered.connect(self.clickDbSaveWeight)
+        self.ui.ActRunTrainNN.triggered.connect(self.neuron_net_train)
         # buttons
-        self.ui.BtnAugData.clicked.connect(self.clickTrainDataNN)
-        self.ui.BtnRunNN.clicked.connect(self.neuron_net_train)
+        self.ui.BtnTrainData.clicked.connect(self.clickTrainData)
+        self.ui.BtnDbSaveWeight.clicked.connect(self.clickDbSaveWeight)
+        self.ui.BtnTrainNN.clicked.connect(self.neuron_net_train)
 
         # test NN
-        self.ui.ActTestImg.triggered.connect(self.clickTestDir)
-        self.ui.ActDbNN.triggered.connect(self.clickDbNNDir)
+        self.ui.ActTestData.triggered.connect(self.clickTestData)
+        self.ui.ActSaveTrainData.triggered.connect(self.clickTrainResult)
+        self.ui.ActDbWeights.triggered.connect(self.clickDbOpenWeights)
         # buttons
-        self.ui.BtnTestData.clicked.connect(self.clickTestDir)
-        self.ui.BtnDB.clicked.connect(self.clickDbNNDir)
+        self.ui.BtnTestData.clicked.connect(self.clickTestData)
+        self.ui.BtnTestResult.clicked.connect(self.clickTrainResult)
+        self.ui.BtnDbOpenWeights.clicked.connect(self.clickDbOpenWeights)
         self.ui.BtnTestNN.clicked.connect(self.neuron_net_test)
 
         # filter global tools
@@ -113,7 +117,8 @@ class mywindow(QMainWindow):
         if self.ui.LstSrcImg.count() != 0:
             self.ui.LstSrcImg.clear()
 
-        self.current_dir = QFileDialog.getExistingDirectory(self, "Выбрать директорию", self.current_dir,
+        self.current_dir = QFileDialog.getExistingDirectory(self, "Выбрать директорию с изображениями",
+                                                            self.current_dir,
                                                             QFileDialog.ShowDirsOnly
                                                             | QFileDialog.DontResolveSymlinks)
         self.ui.LineSrcImg.setText(self.current_dir)
@@ -223,28 +228,29 @@ class mywindow(QMainWindow):
                 bw.mean(os.path.join(self.current_dir, img), os.path.join(out, img))
 
     # test
-    def clickTestDir(self):
+    def clickTestData(self):
         self.test = QFileDialog.getExistingDirectory(self, "Выбрать директории тестируемых данных", self.test,
                                                      QFileDialog.ShowDirsOnly
                                                      | QFileDialog.DontResolveSymlinks)
         self.ui.LineTestData.setText(self.test)
-
-    def clickDbNNDir(self):
-        self.db_nn = QFileDialog.getOpenFileName(self, "Выбрать базы данных нейронной сети", "", "*.hdf5")
-        self.ui.LineDB.setText(self.db_nn[0])
+    def clickDbOpenWeights(self):
+        self.weights_test = QFileDialog.getOpenFileName(self, "Выбрать базу данных нейронной сети", "", "*.hdf5")
+        self.ui.LineDbOpenWeights.setText(self.weights_test[0])
+    def clickTrainResult(self):
+        self.res_test = QFileDialog.getExistingDirectory(self,
+                                                         "Выбрать директорию сохранения результата тестируемых данных",
+                                                         self.res_test)
+        self.ui.LineTestResult.setText(self.res_test)
 
     # train
-    def clickSrcDataNN(self):
-        self.src = QFileDialog.getExistingDirectory(self, "Выбрать директорию с исходными данными", self.src)
-        self.ui.LineSrcData.setText(self.src)
+    def clickTrainData(self):
+        self.train = QFileDialog.getExistingDirectory(self, "Выбрать директорию тренировочных данных", self.train)
+        self.ui.LineTrainData.setText(self.train)
 
-    def clickMaskDataNN(self):
-        self.masks = QFileDialog.getExistingDirectory(self, "Выбрать директорию с масками", self.masks)
-        self.ui.LineMasksData.setText(self.masks)
-
-    def clickTrainDataNN(self):
-        self.aug = QFileDialog.getExistingDirectory(self, "Выбрать директорию с тренировочными данными", self.aug)
-        self.ui.LineAugData.setText(self.aug)
+    def clickDbSaveWeight(self):
+        self.weights_train = QFileDialog.getSaveFileName(self, "Сохранить базу данных с весами нейронной сети",
+                                                         self.weights_train, "*.hdf5")
+        self.ui.LineDbSaveWeight.setText(self.weights_train[0])
 
     def clearGrafFilter(self):
         if self.ui.VBoxSrcFilter.count():
@@ -289,18 +295,18 @@ class mywindow(QMainWindow):
         self.ui.VBoxDstFilter.addWidget(sc2)
 
     def showNNImg(self, item: QtWidgets.QListWidgetItem):
-        if self.ui.VBoxNN.count():
-            self.ui.VBoxNN.removeWidget(self.ui.VBoxNN.itemAt(0).widget())
+        if self.ui.VBoxTestNN.count():
+            self.ui.VBoxTestNN.removeWidget(self.ui.VBoxTestNN.itemAt(0).widget())
 
-        pixmap = QPixmap(os.path.join(self.test, item.text()))
+        pixmap = QPixmap(os.path.join(self.res_test, item.text()))
         self.ui.LblNN.setPixmap(
             pixmap.scaled(self.ui.LblSrcImg.width(), self.ui.LblSrcImg.height(), QtCore.Qt.KeepAspectRatio))
 
-        r = cv.imread(os.path.join(self.test, item.text()))
+        r = cv.imread(os.path.join(self.res_test, item.text()))
         unique, counts = np.unique(r, return_counts=True)
-        sc = MplCanvas(self, width=5, height=4, dpi=500)
+        sc = MplCanvas(self, width=5, height=4, dpi=50)
         sc.axes.scatter(unique, np.log(counts))
-        self.ui.VBoxNN.addWidget(sc)
+        self.ui.VBoxTestNN.addWidget(sc)
 
     def addInList(self):
         process = os.path.join(os.getcwd(), PROCESS)
@@ -316,23 +322,17 @@ class mywindow(QMainWindow):
         if not os.path.isdir(self.test):
             return
 
-        model = unet(self.db_nn[0])
+        model = unet(Path(self.ui.LineDbOpenWeights.text()).name)
 
         testGene = testGenerator(self.test)
 
-        count = 0
-        for i, i2, i3 in os.walk(self.test):
-            if 'predict' in i3:
-                count += 1
-
-        results = model.predict_generator(testGene, 11, verbose=1)
-        saveResult(self.test, results)
+        results = model.predict_generator(testGene, len(os.walk(self.test).__next__()[2]), verbose=1)
+        saveResult(self.res_test, results)
 
         path = os.path.join(os.getcwd(), self.test)
-        for path, dirs, files in os.walk(path):
+        for path, dirs, files in os.walk(self.res_test):
             for img in files:
-                if 'predict' in img:
-                    self.ui.LstNNImg.addItem(QtWidgets.QListWidgetItem(img))
+                self.ui.LstNNImg.addItem(QtWidgets.QListWidgetItem(img))
 
     def neuron_net_train(self):
         data_gen_args = dict(rotation_range=0.2,
@@ -342,15 +342,17 @@ class mywindow(QMainWindow):
                              zoom_range=0.05,
                              horizontal_flip=True,
                              fill_mode='nearest')
-        myGene = trainGenerator(2, 'train', 'images', 'masks', data_gen_args, save_to_dir="train/aug")
+        train = self.ui.LineTrainData.text()
+        myGene = trainGenerator(2, train, self.ui.LineSrcData.text(),
+                                self.ui.LineMasksData.text(), data_gen_args,
+                                save_to_dir=os.path.join(train, self.ui.LineAugData.text()))
 
         model = unet()
-        model_checkpoint = ModelCheckpoint(self.db_nn, monitor='loss', verbose=1, save_best_only=True)
-        model.fit_generator(myGene, self.ui.SpinStepEpochs, self.ui.SpinEpochs, use_multiprocessing=True,
-                            callbacks=[model_checkpoint])
 
-        results = model.predict_generator(myGene, os.walk(self.test).next()[2], verbose=1)
-        saveResult(self.test, results)
+        path = Path(self.weights_train[0]).name
+        model_checkpoint = ModelCheckpoint(path, monitor='loss', verbose=1, save_best_only=True)
+        model.fit_generator(myGene, steps_per_epoch=self.ui.SpinStepEpochs.value(), epochs=self.ui.SpinEpochs.value(),
+                            callbacks=[model_checkpoint])
 
 
 app = QApplication([])
