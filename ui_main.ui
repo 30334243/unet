@@ -267,10 +267,23 @@
          <string>Применить</string>
         </property>
        </widget>
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>130</y>
+          <width>341</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Директория сохранение результата выбранного фильтра</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="TabTrainNN">
        <attribute name="title">
-        <string>Тренировка нейронной сети</string>
+        <string>Обучение нейронной сети</string>
        </attribute>
        <widget class="QSpinBox" name="SpinEpochs">
         <property name="geometry">

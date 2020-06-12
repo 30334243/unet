@@ -17,6 +17,9 @@ from Convert import jpg_to_png as to_png
 
 import matplotlib
 
+from IPython.display import clear_output
+import matplotlib.pyplot as plt
+
 matplotlib.use('Qt5Agg')
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
@@ -33,7 +36,6 @@ class MplCanvas(FigureCanvasQTAgg):
         fig = Figure(figsize=(width, height), dpi=dpi)
         self.axes = fig.add_subplot(111)
         super(MplCanvas, self).__init__(fig)
-
 
 class mywindow(QMainWindow):
     current_dir = ""
@@ -181,6 +183,15 @@ class mywindow(QMainWindow):
                 bw.global_bin(os.path.join(self.current_dir, img), self.ui.SliderGlobal.value(),
                               os.path.join(out, img))
 
+    def filter_global_menu(self):
+        if not os.path.isdir(self.current_dir):
+            return
+        self.clearProcess()
+        for path, dirs, files in os.walk(self.current_dir):
+            for img in files:
+                out = os.path.join(os.getcwd(), PROCESS)
+                bw.global_bin(os.path.join(self.current_dir, img), self.ui.SliderGlobal.value(),
+                              os.path.join(out, img))
     def filter_global_one(self):
         if not os.path.isdir(self.current_dir):
             return
@@ -249,7 +260,7 @@ class mywindow(QMainWindow):
 
     def clickDbSaveWeight(self):
         self.weights_train = QFileDialog.getSaveFileName(self, "Сохранить базу данных с весами нейронной сети",
-                                                         self.weights_train, "*.hdf5")
+                                                         "", "*.hdf5")
         self.ui.LineDbSaveWeight.setText(self.weights_train[0])
 
     def clearGrafFilter(self):
