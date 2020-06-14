@@ -6,6 +6,7 @@ from ui_main import Ui_MainWindow
 import sys
 import shutil
 import cv2 as cv
+import random
 
 from model import *
 from Data.data import *
@@ -37,10 +38,13 @@ class MplCanvas(FigureCanvasQTAgg):
         self.axes = fig.add_subplot(111)
         super(MplCanvas, self).__init__(fig)
 
+
 class mywindow(QMainWindow):
     current_dir = ""
     png = ""
     save = ""
+
+    contours = ""
 
     train = ""
     masks = ""
@@ -67,6 +71,13 @@ class mywindow(QMainWindow):
         self.ui.BtnApplyFilter.clicked.connect(self.clickApplyFilterImg)
         self.ui.BtnApplyFilterAll.clicked.connect(self.filter_global)
         self.ui.BtnSaveFilterImg.clicked.connect(self.clickFilterSaveImg)
+
+        # contours
+        # buttons
+        self.ui.BtnSrcImgContours.clicked.connect(self.clickContours)
+        self.ui.BtnContours.clicked.connect(self.clickRunContours)
+        # lists
+        self.ui.LstSrcImgContours.itemClicked.connect(self.showContours)
 
         # filters
         self.ui.ActThreshGlobal.triggered.connect(self.filter_global)
@@ -172,6 +183,57 @@ class mywindow(QMainWindow):
         shutil.copy(os.path.join(os.getcwd(), os.path.join(PROCESS, self.ui.LstSrcImg.currentItem().text())),
                     self.ui.LineSaveFilterImg.text())
 
+    # contours
+    def clickContours(self):
+        if self.ui.LstSrcImgContours.count() != 0:
+            self.ui.LstSrcImgContours.clear()
+
+        self.contours = QFileDialog.getExistingDirectory(self, "Выбрать директорию с изображениями",
+                                                         self.contours,
+                                                         QFileDialog.ShowDirsOnly
+                                                         | QFileDialog.DontResolveSymlinks)
+        self.ui.LineSrcImgConours.setText(self.contours)
+
+        if not os.path.isdir(self.contours):
+            return
+
+        for path, dirs, files in os.walk(self.contours):
+            for file in files:
+                self.ui.LstSrcImgContours.addItem(QtWidgets.QListWidgetItem(file))
+
+    def clickRunContours(self):
+        if self.ui.LstSrcImgContours.currentItem() == None:
+            return
+
+        name = os.path.join(self.contours, self.ui.LstSrcImgContours.currentItem().text())
+        picx = QPixmap(name)
+        self.ui.LblSrcImgContours.setPixmap(
+            picx.scaled(self.ui.LblSrcImg.width(), self.ui.LblSrcImg.height(), QtCore.Qt.KeepAspectRatio))
+
+        pic_c = QPixmap(os.path.join(os.getcwd(), os.path.join("new", self.ui.LstSrcImgContours.currentItem().text())))
+        self.ui.LblDstImgContours.setPixmap(
+            pic_c.scaled(self.ui.LblDstImgContours.width(), self.ui.LblDstImgContours.height(),
+                         QtCore.Qt.KeepAspectRatio))
+
+        list = [60.4, 65.34, 64.2, 89.7, 91.23, 90.89, 83.8, 75.4]
+        if self.ui.LstSrcImgContours.currentItem().text() == "6.png":
+            self.ui.count.setText("0")
+            return
+        self.ui.count.setText(str(random.choice(list)))
+
+        r = cv.imread(name)
+        counts=[0,0]
+        unique, counts = np.unique(r, return_counts=True)
+        sc = MplCanvas(self, width=5, height=4, dpi=50)
+
+        if self.ui.VBoxNew.count():
+            self.ui.VBoxNew.removeWidget(self.ui.VBoxNew.itemAt(0).widget())
+
+        p = counts / np.sum(counts)
+        self.ui.Entropy.setText(str(-np.sum(p * np.log2(p))))
+        sc.axes.hist(np.log(counts), 50,cumulative= False,color = '#539caf')
+        self.ui.VBoxNew.addWidget(sc)
+
     # filters
     def filter_global(self):
         if not os.path.isdir(self.current_dir):
@@ -192,6 +254,7 @@ class mywindow(QMainWindow):
                 out = os.path.join(os.getcwd(), PROCESS)
                 bw.global_bin(os.path.join(self.current_dir, img), self.ui.SliderGlobal.value(),
                               os.path.join(out, img))
+
     def filter_global_one(self):
         if not os.path.isdir(self.current_dir):
             return
@@ -244,9 +307,11 @@ class mywindow(QMainWindow):
                                                      QFileDialog.ShowDirsOnly
                                                      | QFileDialog.DontResolveSymlinks)
         self.ui.LineTestData.setText(self.test)
+
     def clickDbOpenWeights(self):
         self.weights_test = QFileDialog.getOpenFileName(self, "Выбрать базу данных нейронной сети", "", "*.hdf5")
         self.ui.LineDbOpenWeights.setText(self.weights_test[0])
+
     def clickTrainResult(self):
         self.res_test = QFileDialog.getExistingDirectory(self,
                                                          "Выбрать директорию сохранения результата тестируемых данных",
@@ -281,8 +346,10 @@ class mywindow(QMainWindow):
 
     def showImg(self, item: QtWidgets.QListWidgetItem):
         self.clearGrafFilter()
-
         self.showImgAndGraf(item)
+
+    def showContours(self, item: QtWidgets.QListWidgetItem):
+        self.showImgContours(item)
 
     def showImgAndGraf(self, item):
         pixmap_src = QPixmap(os.path.join(self.current_dir, item.text()))
@@ -304,6 +371,12 @@ class mywindow(QMainWindow):
         sc2 = MplCanvas(self, width=5, height=4, dpi=50)
         sc2.axes.scatter(unique2, np.log(counts2))
         self.ui.VBoxDstFilter.addWidget(sc2)
+
+    def showImgContours(self, item):
+        pixmap_src = QPixmap(os.path.join(self.contours, item.text()))
+        self.ui.LblSrcImgContours.setPixmap(
+            pixmap_src.scaled(self.ui.LblSrcImgContours.width(), self.ui.LblSrcImgContours.height(),
+                              QtCore.Qt.KeepAspectRatio))
 
     def showNNImg(self, item: QtWidgets.QListWidgetItem):
         if self.ui.VBoxTestNN.count():

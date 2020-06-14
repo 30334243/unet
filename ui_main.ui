@@ -281,6 +281,184 @@
         </property>
        </widget>
       </widget>
+      <widget class="QWidget" name="TabContours">
+       <attribute name="title">
+        <string>Метод Контуров</string>
+       </attribute>
+       <widget class="QLabel" name="label_22">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>20</y>
+          <width>671</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Директория с изображениями</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="LineSrcImgConours">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>40</y>
+          <width>671</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="BtnSrcImgContours">
+        <property name="geometry">
+         <rect>
+          <x>700</x>
+          <y>40</y>
+          <width>75</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Обзор</string>
+        </property>
+       </widget>
+       <widget class="QListWidget" name="LstSrcImgContours">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>120</y>
+          <width>256</width>
+          <height>471</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="LblSrcImgContours">
+        <property name="geometry">
+         <rect>
+          <x>290</x>
+          <y>120</y>
+          <width>200</width>
+          <height>200</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="BtnContours">
+        <property name="geometry">
+         <rect>
+          <x>700</x>
+          <y>90</y>
+          <width>75</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Распознать</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="LblDstImgContours">
+        <property name="geometry">
+         <rect>
+          <x>510</x>
+          <y>120</y>
+          <width>200</width>
+          <height>200</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QWidget" name="verticalLayoutWidget_4">
+        <property name="geometry">
+         <rect>
+          <x>290</x>
+          <y>440</y>
+          <width>421</width>
+          <height>151</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="VBoxNew"/>
+       </widget>
+       <widget class="QLabel" name="label_3">
+        <property name="geometry">
+         <rect>
+          <x>290</x>
+          <y>420</y>
+          <width>421</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Распределение значения количества повторения байт в изображении</string>
+        </property>
+       </widget>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>290</x>
+          <y>350</y>
+          <width>124</width>
+          <height>15</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>Вероятность:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="count">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="">
+        <property name="geometry">
+         <rect>
+          <x>290</x>
+          <y>390</y>
+          <width>178</width>
+          <height>15</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>Энтропия изображения:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="Entropy">
+           <property name="minimumSize">
+            <size>
+             <width>47</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
       <widget class="QWidget" name="TabTrainNN">
        <attribute name="title">
         <string>Обучение нейронной сети</string>
